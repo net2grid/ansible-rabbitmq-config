@@ -18,7 +18,7 @@
     login_port: "{{ rabbitmq_config_port|default(omit) }}"
     login_user: "{{ rabbitmq_config_user }}"
     login_password: "{{ rabbitmq_config_password }}"
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     dead_letter_exchange: "{{ item.dead_letter_exchange|default(omit) }}"
     durable: "{{ item.dead_letter_exchange|default(omit) }}"
     message_ttl: "{{ item.message_ttl|default(omit) }}"
