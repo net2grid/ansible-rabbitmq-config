@@ -7,7 +7,7 @@ rabbitmq_config_exchanges:
   - name: hello_world
     exchange_type: topic
 
-rabbitmq_config_queus:
+rabbitmq_config_queues:
   - name: hello_world
     durable: true
     message_ttl: 60000

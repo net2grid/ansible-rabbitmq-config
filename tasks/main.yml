@@ -22,7 +22,7 @@
     dead_letter_exchange: "{{ item.dead_letter_exchange|default(omit) }}"
     durable: "{{ item.dead_letter_exchange|default(omit) }}"
     message_ttl: "{{ item.message_ttl|default(omit) }}"
-  with_items: "{{ rabbitmq_config_queus }}"
+  with_items: "{{ rabbitmq_config_queues }}"
   ignore_errors: "{{ rabbitmq_config_ignore_errors|default(omit) }}"
 
 - name: Bind RabbitMQ queues to exchanges

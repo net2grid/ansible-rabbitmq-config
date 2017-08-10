@@ -23,7 +23,7 @@ The following variables can be passed to this role:
         exchange_type: topic
     
     # Queues
-    rabbitmq_config_queus:
+    rabbitmq_config_queues:
       - name: hello_world
         durable: true
         message_ttl: 60000
