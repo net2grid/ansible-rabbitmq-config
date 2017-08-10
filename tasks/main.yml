@@ -1,0 +1,26 @@
+---
+
+- name: Create RabbitMQ exchanges
+  rabbitmq_exchange:
+    login_host: "{{ rabbitmq_config_user|default(omit) }}"
+    login_port: "{{ rabbitmq_config_user|default(omit) }}"
+    login_user: "{{ rabbitmq_config_user }}"
+    login_password: "{{ rabbitmq_config_password }}"
+    name: "{{ item.name }}"
+    exchange_type: "{{ item.exchange_type }}"
+    durable: {{ item.durable|default('True') }}
+  with_items: "{{ rabbitmq_config_exchanges }}"
+
+- name: Create RabbitMQ queues
+  rabbitmq_queue:
+    name: "{{ item }}"
+    dead_letter_exchange: {{ item.dead_letter_exchange|default(omit) }}
+    durable: {{ item.dead_letter_exchange|default(omit) }}
+    message_ttl: {{ item.message_ttl|default(omit) }}
+  with_items: "{{ rabbitmq_config_queus }}"
+
+- name: Bind RabbitMQ queues to exchanges
+  rabbitmq_binding:
+    queue: "{{ item.queue }}"
+    exchange: "{{ item.exchange }}"
+  with_items: "{{ rabbitmq_config_bindings }}"
