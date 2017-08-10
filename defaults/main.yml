@@ -9,7 +9,6 @@ rabbitmq_config_exchanges:
 
 rabbitmq_config_queus:
   - name: hello_world
-    dead_letter_exchange: hello_world_dead
     durable: true
     message_ttl: 60000
 
