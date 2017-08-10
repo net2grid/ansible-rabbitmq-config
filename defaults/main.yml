@@ -13,5 +13,6 @@ rabbitmq_config_queus:
     message_ttl: 60000
 
 rabbitmq_config_bindings:
-  - queue: hello_world
-    exchange: hello_world
+  - name: hello_world
+    destination: hello_world
+    destination_type: queue
