@@ -13,6 +13,10 @@
 
 - name: Create RabbitMQ queues
   rabbitmq_queue:
+    login_host: "{{ rabbitmq_config_user|default(omit) }}"
+    login_port: "{{ rabbitmq_config_user|default(omit) }}"
+    login_user: "{{ rabbitmq_config_user }}"
+    login_password: "{{ rabbitmq_config_password }}"
     name: "{{ item }}"
     dead_letter_exchange: "{{ item.dead_letter_exchange|default(omit) }}"
     durable: "{{ item.dead_letter_exchange|default(omit) }}"
@@ -21,6 +25,10 @@
 
 - name: Bind RabbitMQ queues to exchanges
   rabbitmq_binding:
+    login_host: "{{ rabbitmq_config_user|default(omit) }}"
+    login_port: "{{ rabbitmq_config_user|default(omit) }}"
+    login_user: "{{ rabbitmq_config_user }}"
+    login_password: "{{ rabbitmq_config_password }}"
     queue: "{{ item.queue }}"
     exchange: "{{ item.exchange }}"
   with_items: "{{ rabbitmq_config_bindings }}"
