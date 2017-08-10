@@ -10,6 +10,7 @@
     exchange_type: "{{ item.exchange_type }}"
     durable: "{{ item.durable|default('True') }}"
   with_items: "{{ rabbitmq_config_exchanges }}"
+  ignore_errors: "{{ rabbitmq_config_ignore_errors|default(omit) }}"
 
 - name: Create RabbitMQ queues
   rabbitmq_queue:
@@ -22,6 +23,7 @@
     durable: "{{ item.dead_letter_exchange|default(omit) }}"
     message_ttl: "{{ item.message_ttl|default(omit) }}"
   with_items: "{{ rabbitmq_config_queus }}"
+  ignore_errors: "{{ rabbitmq_config_ignore_errors|default(omit) }}"
 
 - name: Bind RabbitMQ queues to exchanges
   rabbitmq_binding:
@@ -32,3 +34,4 @@
     queue: "{{ item.queue }}"
     exchange: "{{ item.exchange }}"
   with_items: "{{ rabbitmq_config_bindings }}"
+  ignore_errors: "{{ rabbitmq_config_ignore_errors|default(omit) }}"
